@@ -28,7 +28,7 @@ class App extends Component {
         </p>
         <Link to="/rooms">rooms</Link>   | 
         <Link to="/rooms-add">add</Link>  | 
-        <Link to="/rooms-edit">edit</Link> | 
+        <Link to="/rooms-edit/1">edit</Link> | 
         <Link to="/rooms-info/1">info</Link> | 
         
       </div>
@@ -43,7 +43,7 @@ const routing = (
       <Route path="/" component={App} />
       <Route path="/rooms" component={RoomList} />
       <Route path="/rooms-add" component={RoomAdd} />
-      <Route path="/rooms-edit" component={RoomEdit} />
+      <Route path="/rooms-edit/:id" component={RoomEdit} />
       <Route path="/rooms-info/:id" component={RoomView} />
     </div>
   </Router>

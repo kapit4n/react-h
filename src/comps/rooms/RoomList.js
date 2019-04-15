@@ -6,10 +6,10 @@ export default function RoomList() {
 
   const [roomList, setRoomList] = useState(RoomsService.getRooms());
   return (
-    <ul>
+    <table>
       {roomList.map(r => (
-        <li key={r.id}>{r.name} <Link to={`./rooms-info/${r.id}`}>Go</Link></li>
+        <tr key={r.id}><td>{r.name}</td> <td><Link to={`/rooms-info/${r.id}`}>Go</Link></td></tr>
       ))}
-    </ul>
+    </table>
   )
 }
