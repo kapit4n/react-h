@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import Hello from './Hello';
 import './style.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import ReactDOM from 'react-dom'
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { Table } from 'react-bootstrap';
 
 import RoomView from './src/comps/rooms/RoomView';
 import RoomList from './src/comps/rooms/RoomList';
