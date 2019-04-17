@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import RoomsService from './../../services/RoomsService';
-import { Table } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 
 export default function RoomList() {
 
@@ -18,7 +18,15 @@ export default function RoomList() {
       </thead>
       <tbody>
         {roomList.map(r => (
-          <tr key={r.id}><td>{r.id}</td> <td>{r.name}</td> <td><Link to={`/rooms-info/${r.id}`}>Open</Link></td></tr>
+          <tr key={r.id}>
+            <td>{r.id}</td>
+            <td>{r.name}</td>
+            <td>
+              <Link className="btn btn-primary" to={`/rooms-info/${r.id}`}>Open
+            </Link>
+            <Button onClick={() => console.log("Reservation: " + r.name)}>Reserve</Button>
+            </td>
+          </tr>
         ))}
       </tbody>
     </Table>

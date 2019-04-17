@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import RoomsService from './../../services/RoomsService';
-import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Card, ListGroup, ListGroupItem, Button, ButtonToolbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export default function RoomView(props) {
-
   const [roomInfo, setRoomInfo] = useState(RoomsService.getRoomById(props.match.params.id))
 
   return (
@@ -20,7 +19,10 @@ export default function RoomView(props) {
         <ListGroupItem>Feature 1</ListGroupItem>
       </ListGroup>
       <Card.Body>
-        <Card.Link href={`/rooms-edit/${roomInfo.id}`}>Card Edit</Card.Link>
+      <ButtonToolbar>
+        <Link className="btn btn-primary" to={`/rooms-edit/${roomInfo.id}`}>Edit</Link> <br />
+        <Button to={`/rooms-edit/${roomInfo.id}`} onClick={() => console.log("Make the reservation")} variant="outline-primary">Reserve</Button>
+      </ButtonToolbar>
       </Card.Body>
     </Card>
   )
