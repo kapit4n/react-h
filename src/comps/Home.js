@@ -43,19 +43,38 @@ function RoomBox(props) {
 }
 
 
-export default function Home() {
+function LevelBox(props) {
+  const level = props.level;
 
+    return <div>
+      <div>
+        {level.name}
+      </div>
+      <div>
+        {level.rooms.map(r => <RoomBox room={r} key={r.id} />)}
+      </div>
+    </div>
+}
+
+
+export default function Home() {
 
   const dateToday = new Date().toDateString();
 
-  const [roomList, setRoomList] = useState(RoomsService.getRoomsUsers());
+  const [levelList, setlevelList] = useState(RoomsService.getRoomsUsers());
 
   return (
     <div>
       <div>
         {dateToday}
+        <div style={{backgroundColor: '#ccffc4', width: '50px'}}>
+          free
+        </div>
+        <div style={{backgroundColor: '#f48c89', width: '50px'}}>
+          busy
+        </div>
       </div>
-      {roomList.map(r => <RoomBox room={r} key={r.id} />)}
+      {levelList.map(l => <LevelBox level={l} key={l.id} />)}
     </div>
   )
 }
