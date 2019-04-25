@@ -19,10 +19,10 @@ export default function RoomView(props) {
         <ListGroupItem>Feature 1</ListGroupItem>
       </ListGroup>
       <Card.Body>
-      <ButtonToolbar>
-        <Link className="btn btn-primary" to={`/rooms-edit/${roomInfo.id}`}>Edit</Link> <br />
-        <Button to={`/rooms-edit/${roomInfo.id}`} onClick={() => console.log("Make the reservation")} variant="outline-primary">Reserve</Button>
-      </ButtonToolbar>
+        <ButtonToolbar>
+          <Link className="btn btn-primary" to={`/rooms-edit/${roomInfo.id}`}>Edit</Link> <br />
+          <Button to={`/rooms-edit/${roomInfo.id}`} onClick={() => console.log("Make the reservation")} variant="outline-primary">Reserve</Button>
+        </ButtonToolbar>
       </Card.Body>
     </Card>
   )

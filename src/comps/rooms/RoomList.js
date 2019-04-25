@@ -24,7 +24,7 @@ export default function RoomList() {
             <td>
               <Link className="btn btn-primary" to={`/rooms-info/${r.id}`}>Open
             </Link>
-            <Button onClick={() => console.log("Reservation: " + r.name)}>Reserve</Button>
+              <Button onClick={() => console.log("Reservation: " + r.name)}>Reserve</Button>
             </td>
           </tr>
         ))}

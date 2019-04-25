@@ -29,11 +29,10 @@ class App extends Component {
         <p>
           Start editing to see some magic happen :)
         </p>
-        <Link to="/rooms">rooms</Link>   | 
-        <Link to="/rooms-add">add</Link>  | 
-        <Link to="/rooms-edit/1">edit</Link> | 
-        <Link to="/rooms-info/1">info</Link> | 
-        
+        | <Link to="/rooms">rooms</Link>  
+        | <Link to="/rooms-add">add</Link>
+        | <Link to="/rooms-edit/1">edit</Link>
+        | <Link to="/rooms-info/1">info</Link>
       </div>
     );
   }
