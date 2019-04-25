@@ -7,11 +7,12 @@ import ReactDOM from 'react-dom'
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import { Table } from 'react-bootstrap';
 
-import RoomView from './src/comps/rooms/RoomView';
-import RoomList from './src/comps/rooms/RoomList';
-import RoomAdd from './src/comps/rooms/RoomAdd';
-import RoomEdit from './src/comps/rooms/RoomEdit';
-import Home from './src/comps/Home';
+import RoomView from './comps/rooms/RoomView';
+import RoomList from './comps/rooms/RoomList';
+import RoomAdd from './comps/rooms/RoomAdd';
+import RoomEdit from './comps/rooms/RoomEdit';
+import Home from './comps/Home';
+import * as serviceWorker from './serviceWorker';
 
 class App extends Component {
   constructor() {
@@ -52,3 +53,4 @@ const routing = (
 )
 
 ReactDOM.render(routing, document.getElementById('root'))
+serviceWorker.unregister();
