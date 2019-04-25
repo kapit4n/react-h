@@ -18,7 +18,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      name: 'React'
+      name: 'React Hotel'
     };
   }
 
@@ -26,13 +26,10 @@ class App extends Component {
     return (
       <div>
         <Hello name={this.state.name} />
-        <p>
-          Start editing to see some magic happen :)
-        </p>
-        | <Link to="/rooms">rooms</Link>  
-        | <Link to="/rooms-add">add</Link>
-        | <Link to="/rooms-edit/1">edit</Link>
-        | <Link to="/rooms-info/1">info</Link>
+        | <Link to="/">Home</Link>  
+        | <Link to="/rooms">Rooms</Link>
+        | <Link to="/clients">Clients</Link>
+        <Home></Home> 
       </div>
     );
   }
