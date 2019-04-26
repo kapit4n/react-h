@@ -11,6 +11,12 @@ import RoomView from './comps/rooms/RoomView';
 import RoomList from './comps/rooms/RoomList';
 import RoomAdd from './comps/rooms/RoomAdd';
 import RoomEdit from './comps/rooms/RoomEdit';
+
+import ClientView from './comps/clients/ClientView';
+import ClientList from './comps/clients/ClientList';
+import ClientAdd from './comps/clients/ClientAdd';
+import ClientEdit from './comps/clients/ClientEdit';
+
 import Home from './comps/Home';
 import * as serviceWorker from './serviceWorker';
 
@@ -44,6 +50,12 @@ const routing = (
       <Route path="/rooms-add" component={RoomAdd} />
       <Route path="/rooms-edit/:id" component={RoomEdit} />
       <Route path="/rooms-info/:id" component={RoomView} />
+      
+      <Route path="/clients" component={ClientList} />
+      <Route path="/clients-add" component={ClientAdd} />
+      <Route path="/clients-edit/:id" component={ClientEdit} />
+      <Route path="/clients-info/:id" component={ClientView} />
+
     </div>
   </Router>
 )
