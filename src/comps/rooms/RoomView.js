@@ -7,7 +7,7 @@ export default function RoomView(props) {
   const [roomInfo, setRoomInfo] = useState(RoomsService.getRoomById(props.match.params.id))
 
   return (
-    <Card style={{ width: '30rem' }}>
+    <Card style={{ width: '100%' }}>
       <Card.Img variant="top" src={roomInfo.img} />
       <Card.Body>
         <Card.Title>{roomInfo.name}</Card.Title>
