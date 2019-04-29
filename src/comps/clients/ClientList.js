@@ -22,7 +22,7 @@ export default function ClientList() {
             <td>{r.id}</td>
             <td>{r.name}</td>
             <td>
-              <Link className="btn btn-primary" to={`/rooms-info/${r.id}`}>Open
+              <Link className="btn btn-primary" to={`/clients-info/${r.id}`}>Open
             </Link>
             </td>
           </tr>

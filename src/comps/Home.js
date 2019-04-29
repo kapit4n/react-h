@@ -75,7 +75,7 @@ export default function Home() {
       <div>
         {dateToday}
         <div style={{backgroundColor: '#ccffc4', width: '50px'}}>
-          free
+          free  
         </div>
         <div style={{backgroundColor: '#f48c89', width: '50px'}}>
           busy

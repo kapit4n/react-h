@@ -1,15 +1,26 @@
 import React, { useState } from "react";
+import { Card, Form, ButtonToolbar, Button } from 'react-bootstrap';
+import ClientsService from './../../services/ClientsService';
 
-export default function ClientEdit() {
+export default function ClientEdit(props) {
 
-  const [name, setName] = useState("");
-  const [identifier, setIdentifier] = useState("");
+  const [clientInfo, setClientInfo] = useState(ClientsService.getClientById(props.match.params.id))
 
   return (
-    <div>
-      <input onChange={(e) => setName(e.target.value)} placeholder="Name" />
-      <input onChange={(e) => setIdentifier(e.target.value)} placeholder="Identifier" />
-    </div>
+      <Form>
+        <Form.Group controlId="name">
+          <Form.Label>Name</Form.Label>
+          <Form.Control value={clientInfo.duration} onChange={(e) => setClientInfo(Object.assign({}, clientInfo, { name: e.target.value }))} type="text" placeholder="Name" />
+        </Form.Group>
+        
+        <Form.Group controlId="identifier">
+          <Form.Label>Identifier</Form.Label>
+          <Form.Control value={clientInfo.duration} onChange={(e) => setClientInfo(Object.assign({}, clientInfo, { identifier: e.target.value }))} type="text" placeholder="Indentifier" />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Save
+        </Button>
+      </Form>
   )
 
 }

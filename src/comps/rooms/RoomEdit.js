@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import RoomsService from './../../services/RoomsService';
 import { Link } from 'react-router-dom';
-import { Card, ListGroup, ListGroupItem, ButtonToolbar, Button } from 'react-bootstrap';
+import { Form, ButtonToolbar } from 'react-bootstrap';
 
 export default function RoomEdit(props) {
 
@@ -10,28 +10,27 @@ export default function RoomEdit(props) {
   const { match: { params } } = props;
 
   return (
-    <Card style={{ width: '30rem' }}>
-      <Card.Img variant="top" src={roomInfo.img} />
-      <input value={roomInfo.img} onChange={(e) => setRoomInfo(Object.assign({}, roomInfo, { img: e.target.value }))} />
-      <Card.Body>
-        <Card.Title><input value={roomInfo.name} onChange={(e) => setRoomInfo(Object.assign({}, roomInfo, { name: e.target.value }))} /></Card.Title>
-        <Card.Text>
-          <textarea cols="50" rows="10" onChange={(e) => setRoomInfo(Object.assign({}, roomInfo, { description: e.target.value }))}>
-            {roomInfo.description}
-          </textarea>
-        </Card.Text>
-      </Card.Body>
-      <ListGroup className="list-group-flush">
-        <ListGroupItem>Feature 1</ListGroupItem>
-      </ListGroup>
-      <Card.Body>
-        <ButtonToolbar>
-          <Link className="btn btn-primary" to={`/rooms-info/${roomInfo.id}`}>Save
-            </Link>
-          <br />
-          <Link className="btn btn-danger" to={`/rooms-info/${roomInfo.id}`}>Cancel</Link> <br />
-        </ButtonToolbar>
-      </Card.Body>
-    </Card>
+    <Form>
+      <Form.Group controlId="name">
+        <Form.Label>Name </Form.Label>
+        <Form.Control value={roomInfo.name} onChange={(e) => setRoomInfo(Object.assign({}, roomInfo, { name: e.target.value }))} type="text" placeholder="Name" />
+      </Form.Group>
+      
+      <Form.Group controlId="img">
+        <Form.Label>Img </Form.Label>
+        <Form.Control value={roomInfo.img} onChange={(e) => setRoomInfo(Object.assign({}, roomInfo, { img: e.target.value }))} type="text" placeholder="Name" />
+      </Form.Group>
+      <Form.Group controlId="description">
+        <Form.Label>Description</Form.Label>
+        <Form.Control value={roomInfo.description} onChange={(e) => setRoomInfo(Object.assign({}, roomInfo, { description: e.target.value }))} type="textarea" placeholder="Name" />
+      </Form.Group>
+      <ButtonToolbar>
+        <Link className="btn btn-primary" to={`/rooms-info/${roomInfo.id}`}>Save
+          </Link>
+        <br />
+        <Link className="btn btn-danger" to={`/rooms-info/${roomInfo.id}`}>Cancel</Link> <br />
+      </ButtonToolbar>
+
+    </Form>
   )
 }

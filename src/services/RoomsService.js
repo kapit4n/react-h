@@ -132,10 +132,9 @@ const roomsUsersList = [
           isBusy: true
         }
       ]
-    },
+    }
+];
 
-  
-]
 
 const RoomsService = {
   getRooms: function () {

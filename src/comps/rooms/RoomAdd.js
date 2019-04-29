@@ -8,10 +8,16 @@ export default function RoomAdd() {
 
   return (
     <div>
-      <input onChange={(e) => setName(e.target.value)} placeholder="Name" />
-      <input onChange={(e) => setImg(e.target.value)} placeholder="http://" />
-      <img src={img} style={{ width: 450 }} />
-      <textarea onChange={(e) => setDescription(e.target.value)} placeholder="Description" cols="46" />
+      <div>
+        <label>Name</label>
+        <input onChange={(e) => setName(e.target.value)} placeholder="Name" />
+      </div>
+      <div>
+        <label>Img</label>
+        <input onChange={(e) => setImg(e.target.value)} placeholder="http://" />
+        <img src={img} style={{ width: 450 }} />
+      </div>
+      <textarea onChange={(e) => setDescription(e.target.value)} placeholder="Description" cols="46" rows="6" />
     </div>
   )
 

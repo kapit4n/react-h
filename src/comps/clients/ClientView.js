@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ClientsService from './../../services/RoomsService';
+import ClientsService from './../../services/ClientsService';
 import { Card, ListGroup, ListGroupItem, Button, ButtonToolbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -20,8 +20,8 @@ export default function ClientView(props) {
       </ListGroup>
       <Card.Body>
         <ButtonToolbar>
-          <Link className="btn btn-primary" to={`/rooms-edit/${clientInfo.id}`}>Edit</Link> <br />
-          <Button to={`/rooms-edit/${clientInfo.id}`} onClick={() => console.log("Make the reservation")} variant="outline-primary">Reserve</Button>
+          <Link className="btn btn-primary" to={`/clients-edit/${clientInfo.id}`}>Edit</Link> <br />
+          <Button to={`/clients-edit/${clientInfo.id}`} onClick={() => console.log("Make the reservation")} variant="outline-primary">Reserve</Button>
         </ButtonToolbar>
       </Card.Body>
     </Card>
