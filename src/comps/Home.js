@@ -31,7 +31,7 @@ function RoomBox(props) {
         {room.name}
       </div>
       <div>
-        {room.user}<br/>
+        {room.user}<br />
         <Button size="sm">UnBook</Button>
       </div>
     </Card>
@@ -42,9 +42,9 @@ function RoomBox(props) {
         {room.name}
       </div>
       <div>
-        Free<br/>
+        Free<br />
         <Button size="sm">Book</Button>
-        </div>
+      </div>
     </Card>
   }
 }
@@ -53,14 +53,31 @@ function RoomBox(props) {
 function LevelBox(props) {
   const level = props.level;
 
-    return <div>
-      <div>
-        {level.name}
-      </div>
-      <div>
-        {level.rooms.map(r => <RoomBox room={r} key={r.id} />)}
-      </div>
+  return <div>
+    <div>
+      {level.name}
     </div>
+    <div>
+      {level.rooms.map(r => <RoomBox room={r} key={r.id} />)}
+    </div>
+  </div>
+}
+
+function RoomCalendar(props) {
+  return <div>
+    Calendar view
+  </div>
+}
+
+function CalendarBox(props) {
+  const level = props.level;
+
+  return <div>
+    <div>{level.name}</div>
+    <div>
+      {level.rooms.map(r => <RoomCalendar room={r} key={r.id} />)}
+    </div>
+  </div>
 }
 
 
@@ -70,18 +87,33 @@ export default function Home() {
 
   const [levelList, setlevelList] = useState(RoomsService.getRoomsUsers());
 
+  const [isColorView, setIsColorView] = useState(false); 
+
   return (
     <div>
       <div>
-        {dateToday}
-        <div style={{backgroundColor: '#ccffc4', width: '50px'}}>
-          free  
+        <div>
+          <button>Calendar View</button>
+          <button>Color View</button>
         </div>
-        <div style={{backgroundColor: '#f48c89', width: '50px'}}>
-          busy
+        <div>
+          {dateToday}
+          <div style={{ backgroundColor: '#ccffc4', width: '50px', display: 'inline-block' }}>
+            free
+          </div>
+          <div style={{ backgroundColor: '#f48c89', width: '50px', display: 'inline-block' }}>
+            busy
+          </div>
         </div>
       </div>
-      {levelList.map(l => <LevelBox level={l} key={l.id} />)}
+      {
+        isColorView ? (
+          levelList.map(l => <LevelBox level={l} key={l.id} />)
+        ) :
+        (
+          levelList.map(l => <LevelBox level={l} key={l.id} />)
+        )
+      }
     </div>
   )
 }
