@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import BookingsService from '../../services/BookingsService';
 import { Card, ListGroup, ListGroupItem, Button, ButtonToolbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import styles from './Bookings.css';
 
 export default function BookingView(props) {
   const [bookingInfo, setBookingInfo] = useState(BookingsService.getBookingById(props.match.params.id))
 
   return (
-    <Card style={{ width: '30rem' }}>
+    <Card className="card-view">
       <Card.Body>
         <Card.Title>{bookingInfo.room.name}</Card.Title>
         <Card.Text>
@@ -21,19 +22,24 @@ export default function BookingView(props) {
         <ListGroupItem>TotalToPay: {bookingInfo.totalToPay}</ListGroupItem>
         <ListGroupItem>
           <div>
-            User Info:
-            Name: {bookingInfo.user.name},
-            address: {bookingInfo.user.address}
-            <img style={{width: '80px', display: 'block'}} src={bookingInfo.user.img}></img>
+            <img className="user-img" src={bookingInfo.user.img}></img>
+            <div className="user-info">
+              User Info:
+              Name: {bookingInfo.user.name},
+              address: {bookingInfo.user.address}
+            </div>
           </div>
         </ListGroupItem>
         <ListGroupItem>
           <div>
-            Room Info:
-            Name: {bookingInfo.room.name},
-            Capacity: {bookingInfo.room.capacity},
-            Features: {bookingInfo.room.features},
-            <img style={{width: '80px', display: 'block'}} src={bookingInfo.room.img}></img>
+            <img className="room-img" src={bookingInfo.room.img}></img>
+            <div className="room-info">
+              Room Info:
+              Name: {bookingInfo.room.name},
+              Capacity: {bookingInfo.room.capacity},
+              Features: {bookingInfo.room.features},
+
+            </div>
           </div>
         </ListGroupItem>
       </ListGroup>
