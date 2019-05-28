@@ -1,0 +1,13 @@
+.card-view {
+    width: '100%';
+}
+
+.left-view {
+    width: 20rem;
+    display: inline-block;
+}
+
+.right-view {
+    width: 20rem;
+    display: inline-block;
+}

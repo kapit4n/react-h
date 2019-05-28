@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import RoomsService from '../../services/RoomsService';
 import { Card, ListGroup, ListGroupItem, Button, ButtonToolbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import styles from './Rooms.css'
+
 
 export default function RoomView(props) {
   const [roomInfo, setRoomInfo] = useState(RoomsService.getRoomById(props.match.params.id))
 
   return (
-    <Card style={{ width: '100%' }}>
+    <Card className="card-view">
       <Card.Img variant="top" src={roomInfo.img} />
       <Card.Body>
         <Card.Title>{roomInfo.name}</Card.Title>
