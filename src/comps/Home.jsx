@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import RoomsService from "../services/RoomsService";
 import { Card, Button, Jumbotron } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faQuran } from "@fortawesome/free-solid-svg-icons";
 
 function RoomBox(props) {
   const isBusy = props.room.isBusy;

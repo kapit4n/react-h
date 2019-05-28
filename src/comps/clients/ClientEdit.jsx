@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from 'react-bootstrap';
-import ClientsService from './../../services/ClientsService';
+import ClientsService from '../../services/ClientsService';
 
 export default function ClientEdit(props) {
 

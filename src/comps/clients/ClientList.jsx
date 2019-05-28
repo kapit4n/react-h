@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import ClientsService from './../../services/ClientsService';
+import ClientsService from '../../services/ClientsService';
 import { Table } from 'react-bootstrap';
 
 export default function ClientList() {

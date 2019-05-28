@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import BookingsService from './../../services/BookingsService';
+import BookingsService from '../../services/BookingsService';
 import { Form, ButtonToolbar, Button } from 'react-bootstrap';
 
 export default function BookingEdit(props) {

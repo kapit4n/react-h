@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ClientsService from './../../services/ClientsService';
+import ClientsService from '../../services/ClientsService';
 import { Card, ListGroup, ListGroupItem, Button, ButtonToolbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 

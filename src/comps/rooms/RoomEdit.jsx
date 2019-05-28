@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import RoomsService from './../../services/RoomsService';
+import RoomsService from '../../services/RoomsService';
 import { Link } from 'react-router-dom';
 import { Form, ButtonToolbar } from 'react-bootstrap';
 
