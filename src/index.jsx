@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
-import Hello from './Hello';
 import './style.css';
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserTimes } from '@fortawesome/free-solid-svg-icons'
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
+
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ReactDOM from 'react-dom'
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
-import { Table } from 'react-bootstrap';
 
 import RoomView from './comps/rooms/RoomView';
 import RoomList from './comps/rooms/RoomList';
@@ -26,6 +29,8 @@ import BookingEdit from './comps/bookings/BookingEdit';
 import Home from './comps/Home';
 import * as serviceWorker from './serviceWorker';
 
+library.add(faUserTimes)
+library.add(faUserPlus)
 class App extends Component {
   constructor() {
     super();
@@ -37,7 +42,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Hello name={this.state.name} />
         | <Link to="/home">Home</Link>  
         | <Link to="/rooms">Rooms</Link>
         | <Link to="/clients">Clients</Link>

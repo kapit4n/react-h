@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import RoomsService from "../services/RoomsService";
 import { Card, Button, Jumbotron } from "react-bootstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function RoomBox(props) {
   const isBusy = props.room.isBusy;
@@ -32,7 +33,7 @@ function RoomBox(props) {
         <div>
           {room.user}
           <br />
-          <Button size="sm">UnBook</Button>
+          <Button size="sm" variant="danger"><FontAwesomeIcon icon="user-times" /></Button>
         </div>
       </Card>
     );
@@ -44,7 +45,7 @@ function RoomBox(props) {
         <div>
           Free
           <br />
-          <Button size="sm">Book</Button>
+          <Button size="sm"><FontAwesomeIcon icon="user-plus" /></Button>
         </div>
       </Card>
     );
