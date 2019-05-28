@@ -2,33 +2,15 @@ import React, { useState } from "react";
 import RoomsService from "../services/RoomsService";
 import { Card, Button, Jumbotron } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faQuran } from "@fortawesome/free-solid-svg-icons";
+import styles from './Home.css'
 
 function RoomBox(props) {
   const isBusy = props.room.isBusy;
   const room = props.room;
 
-  const squareStyle = {
-    height: "100px",
-    width: "100px",
-    backgroundColor: "#ccffc4",
-    display: "inline-block",
-    margin: 5,
-    fontSize: 12
-  };
-
-  const squareBusyStyle = {
-    height: "100px",
-    width: "100px",
-    backgroundColor: "#f48c89",
-    display: "inline-block",
-    margin: 5,
-    fontSize: 12
-  };
-
   if (isBusy) {
     return (
-      <Card style={squareBusyStyle}>
+      <Card className="square-busy">
         <div>{room.id}</div>
         <div>{room.name}</div>
         <div>
@@ -40,7 +22,7 @@ function RoomBox(props) {
     );
   } else {
     return (
-      <Card style={squareStyle}>
+      <Card className="square-free">
         <div>{room.id}</div>
         <div>{room.name}</div>
         <div>

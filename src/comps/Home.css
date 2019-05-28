@@ -1,0 +1,17 @@
+.square-free {
+  height: 100px;
+  width: 100px;
+  background-color: #ccffc4;
+  display: inline-block;
+  margin: 5px;
+  font-size: 12px;
+}
+
+.square-busy {
+  height: 100px;
+  width: 100px;
+  background-color: #f48c89;
+  display: inline-block;
+  margin: 5px;
+  font-size: 12px;
+}
