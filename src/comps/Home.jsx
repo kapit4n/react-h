@@ -21,7 +21,7 @@ function RemoveBookModal(props) {
         </Modal.Title>
     </Modal.Header>
     <Modal.Body>
-      <p> Are you sure to remove the booking for user {props.room.user.name}</p>
+      <p> Are you sure to remove the booking for user {props.room.user}</p>
     </Modal.Body>
     <Modal.Footer>
     <Button variant="secondary" onClick={props.onHide}>NO</Button>
@@ -107,6 +107,7 @@ function RoomBox(props) {
   let removeModalClose = () => setRemoveModalShow(false);
 
   let modalSave = () => setModalShow(false);
+  let removeBookingSave = () => setRemoveModalShow(false);
 
   if (isBusy) {
     return (
@@ -124,7 +125,7 @@ function RoomBox(props) {
           </div>
         </Card>
         <RemoveBookModal show={removeModalShow} room={room}
-          onHide={removeModalClose} onSave={modalSave}></RemoveBookModal>
+          onHide={removeModalClose} onSave={removeBookingSave}></RemoveBookModal>
       </>
     );
   } else {
