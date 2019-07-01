@@ -1,8 +1,76 @@
 import React, { useState } from "react";
-import RoomsService from "../services/RoomsService";
-import { Card, Button, Jumbotron } from "react-bootstrap";
+import { Card, Button, Jumbotron, Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+
+import RoomsService from "../services/RoomsService";
 import styles from './Home.css'
+
+function BookModal(props) {
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Book it
+          </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Formik
+          initialValues={{
+            userId: '',
+            startDate: '',
+            endDate: ''
+          }}
+          validationSchema={Yup.object().shape({
+            userId: Yup.number()
+              .required('User is required'),
+            startDate: Yup.date()
+              .required('Start Date is required'),
+            endDate: Yup.string()
+              .required('End Date is required')
+          })}
+          onSubmit={fields => {
+            alert('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4));
+            props.onSave();
+          }}
+          render={({ errors, status, touched }) => (
+            <Form>
+              <div className="form-group">
+                <label htmlFor="userId">User</label>
+                <Field name="userId" type="number" className={'form-control' + (errors.userId && touched.userId ? ' is-invalid' : '')} />
+                <ErrorMessage name="userId" component="div" className="invalid-feedback" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="startDate">Start Date</label>
+                <Field name="startDate" type="date" className={'form-control' + (errors.startDate && touched.startDate ? ' is-invalid' : '')} />
+                <ErrorMessage name="startDate" component="div" className="invalid-feedback" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="endDate">endDate</label>
+                <Field name="endDate" type="date" className={'form-control' + (errors.endDate && touched.endDate ? ' is-invalid' : '')} />
+                <ErrorMessage name="endDate" component="div" className="invalid-feedback" />
+              </div>
+              <div className="form-group">
+                <button type="submit" className="btn btn-primary mr-2">Register</button>
+                <button type="reset" className="btn btn-secondary">Reset</button>
+              </div>
+            </Form>
+          )}
+        />
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={props.onHide}>Cancel</Button>
+        <Button onClick={props.onSave}>Save</Button>
+      </Modal.Footer>
+    </Modal>
+  )
+}
 
 function RoomBox(props) {
   const isBusy = props.room.isBusy;
@@ -76,38 +144,52 @@ export default function Home() {
 
   const [isColorView, setIsColorView] = useState(false);
 
+  const [modalShow, setModalShow] = useState(false);
+
+  let modalClose = () => setModalShow(false);
+  let modalSave = () => setModalShow(false);
+
   return (
-    <Jumbotron>
-      <div>
+    <>
+      <Jumbotron>
         <div>
-          <Button>Calendar View</Button>
-          <Button>Color View</Button>
-        </div>
-        <div>
-          {dateToday}
-          <div
-            style={{
-              backgroundColor: "#ccffc4",
-              width: "50px",
-              display: "inline-block"
-            }}
-          >
-            free
+          <div>
+            <Button>Calendar View</Button>
+            <Button>Color View</Button>
+            <Button
+              variant="primary"
+              onClick={() => setModalShow(true)}
+            >Book</Button>
           </div>
-          <div
-            style={{
-              backgroundColor: "#f48c89",
-              width: "50px",
-              display: "inline-block"
-            }}
-          >
-            busy
+          <div>
+            {dateToday}
+            <div
+              style={{
+                backgroundColor: "#ccffc4",
+                width: "50px",
+                display: "inline-block"
+              }}
+            >
+              free
+          </div>
+            <div
+              style={{
+                backgroundColor: "#f48c89",
+                width: "50px",
+                display: "inline-block"
+              }}
+            >
+              busy
+          </div>
           </div>
         </div>
-      </div>
-      {isColorView
-        ? levelList.map(l => <LevelBox level={l} key={l.id} />)
-        : levelList.map(l => <LevelBox level={l} key={l.id} />)}
-    </Jumbotron>
+        {isColorView
+          ? levelList.map(l => <LevelBox level={l} key={l.id} />)
+          : levelList.map(l => <LevelBox level={l} key={l.id} />)}
+      </Jumbotron>
+      <BookModal show={modalShow}
+        onHide={modalClose} onSave={modalSave}></BookModal>
+    </>
+
   );
 }
