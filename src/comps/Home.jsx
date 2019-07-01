@@ -43,7 +43,11 @@ function BookModal(props) {
             <Form>
               <div className="form-group">
                 <label htmlFor="userId">User</label>
-                <Field name="userId" type="number" className={'form-control' + (errors.userId && touched.userId ? ' is-invalid' : '')} />
+                <Field name="userId" component="select" className={'form-control' + (errors.userId && touched.userId ? ' is-invalid' : '')}>
+                  <option value={1}>Luis Arce</option>
+                  <option value={2}>Juan Arce</option>
+                  <option value={3}>Hansel Arce</option>
+                </Field>
                 <ErrorMessage name="userId" component="div" className="invalid-feedback" />
               </div>
               <div className="form-group">
@@ -64,10 +68,6 @@ function BookModal(props) {
           )}
         />
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Cancel</Button>
-        <Button onClick={props.onSave}>Save</Button>
-      </Modal.Footer>
     </Modal>
   )
 }
@@ -75,30 +75,46 @@ function BookModal(props) {
 function RoomBox(props) {
   const isBusy = props.room.isBusy;
   const room = props.room;
+  const [modalShow, setModalShow] = useState(false);
+
+  let modalClose = () => setModalShow(false);
+  let modalSave = () => setModalShow(false);
 
   if (isBusy) {
     return (
-      <Card className="square-busy">
-        <div>{room.id}</div>
-        <div>{room.name}</div>
-        <div>
-          {room.user}
-          <br />
-          <Button size="sm" variant="danger"><FontAwesomeIcon icon="user-times" /></Button>
-        </div>
-      </Card>
+      <>
+        <Card className="square-busy">
+          <div>{room.id}</div>
+          <div>{room.name}</div>
+          <div>
+            {room.user}
+            <br />
+            <Button size="sm" variant="danger"><FontAwesomeIcon icon="user-times" /></Button>
+          </div>
+        </Card>
+        <BookModal show={modalShow}
+          onHide={modalClose} onSave={modalSave}></BookModal>
+      </>
     );
   } else {
     return (
-      <Card className="square-free">
-        <div>{room.id}</div>
-        <div>{room.name}</div>
-        <div>
-          Free
+      <>
+        <Card className="square-free">
+          <div>{room.id}</div>
+          <div>{room.name}</div>
+          <div>
+            Free
           <br />
-          <Button size="sm"><FontAwesomeIcon icon="user-plus" /></Button>
-        </div>
-      </Card>
+            <Button size="sm"
+              variant="primary"
+              onClick={() => setModalShow(true)}
+            ><FontAwesomeIcon icon="user-plus" /></Button>
+          </div>
+        </Card>
+        <BookModal show={modalShow}
+          onHide={modalClose} onSave={modalSave}></BookModal>
+      </>
+
     );
   }
 }
@@ -144,10 +160,6 @@ export default function Home() {
 
   const [isColorView, setIsColorView] = useState(false);
 
-  const [modalShow, setModalShow] = useState(false);
-
-  let modalClose = () => setModalShow(false);
-  let modalSave = () => setModalShow(false);
 
   return (
     <>
@@ -156,10 +168,6 @@ export default function Home() {
           <div>
             <Button>Calendar View</Button>
             <Button>Color View</Button>
-            <Button
-              variant="primary"
-              onClick={() => setModalShow(true)}
-            >Book</Button>
           </div>
           <div>
             {dateToday}
@@ -187,8 +195,7 @@ export default function Home() {
           ? levelList.map(l => <LevelBox level={l} key={l.id} />)
           : levelList.map(l => <LevelBox level={l} key={l.id} />)}
       </Jumbotron>
-      <BookModal show={modalShow}
-        onHide={modalClose} onSave={modalSave}></BookModal>
+
     </>
 
   );
