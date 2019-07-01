@@ -7,6 +7,31 @@ import * as Yup from 'yup';
 import RoomsService from "../services/RoomsService";
 import styles from './Home.css'
 
+function RemoveBookModal(props) {
+  return (
+    <Modal
+    {...props}
+    size="lg"
+    aria-labelledby="contained-modal-title-vcenter"
+    centered
+  >
+    <Modal.Header closeButton>
+      <Modal.Title id="contained-modal-title-vcenter">
+        Remove Booking on {props.room.name}
+        </Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+      <p> Are you sure to remove the booking for user {props.room.user.name}</p>
+    </Modal.Body>
+    <Modal.Footer>
+    <Button variant="secondary" onClick={props.onHide}>NO</Button>
+    <Button variant="primary" onClick={props.onSave}>YES</Button>
+  </Modal.Footer>
+    </Modal>
+  );
+}
+
+
 function BookModal(props) {
   return (
     <Modal
@@ -17,7 +42,7 @@ function BookModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Book it
+          Book on {props.room.name}
           </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -76,8 +101,11 @@ function RoomBox(props) {
   const isBusy = props.room.isBusy;
   const room = props.room;
   const [modalShow, setModalShow] = useState(false);
+  const [removeModalShow, setRemoveModalShow] = useState(false);
 
   let modalClose = () => setModalShow(false);
+  let removeModalClose = () => setRemoveModalShow(false);
+
   let modalSave = () => setModalShow(false);
 
   if (isBusy) {
@@ -89,11 +117,14 @@ function RoomBox(props) {
           <div>
             {room.user}
             <br />
-            <Button size="sm" variant="danger"><FontAwesomeIcon icon="user-times" /></Button>
+            <Button size="sm"
+              variant="danger"
+              onClick={() => setRemoveModalShow(true)}
+            ><FontAwesomeIcon icon="user-times" /></Button>
           </div>
         </Card>
-        <BookModal show={modalShow}
-          onHide={modalClose} onSave={modalSave}></BookModal>
+        <RemoveBookModal show={removeModalShow} room={room}
+          onHide={removeModalClose} onSave={modalSave}></RemoveBookModal>
       </>
     );
   } else {
@@ -111,7 +142,7 @@ function RoomBox(props) {
             ><FontAwesomeIcon icon="user-plus" /></Button>
           </div>
         </Card>
-        <BookModal show={modalShow}
+        <BookModal show={modalShow} room={room}
           onHide={modalClose} onSave={modalSave}></BookModal>
       </>
 
