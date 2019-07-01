@@ -7,6 +7,31 @@ import * as Yup from 'yup';
 import RoomsService from "../services/RoomsService";
 import styles from './Home.css'
 
+function RemoveBookModal(props) {
+  return (
+    <Modal
+    {...props}
+    size="lg"
+    aria-labelledby="contained-modal-title-vcenter"
+    centered
+  >
+    <Modal.Header closeButton>
+      <Modal.Title id="contained-modal-title-vcenter">
+        Remove Booking on {props.room.name}
+        </Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+      <p> Are you sure to remove the booking for user {props.room.user}</p>
+    </Modal.Body>
+    <Modal.Footer>
+    <Button variant="secondary" onClick={props.onHide}>NO</Button>
+    <Button variant="primary" onClick={props.onSave}>YES</Button>
+  </Modal.Footer>
+    </Modal>
+  );
+}
+
+
 function BookModal(props) {
   return (
     <Modal
@@ -17,7 +42,7 @@ function BookModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Book it
+          Book on {props.room.name}
           </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -43,7 +68,11 @@ function BookModal(props) {
             <Form>
               <div className="form-group">
                 <label htmlFor="userId">User</label>
-                <Field name="userId" type="number" className={'form-control' + (errors.userId && touched.userId ? ' is-invalid' : '')} />
+                <Field name="userId" component="select" className={'form-control' + (errors.userId && touched.userId ? ' is-invalid' : '')}>
+                  <option value={1}>Luis Arce</option>
+                  <option value={2}>Juan Arce</option>
+                  <option value={3}>Hansel Arce</option>
+                </Field>
                 <ErrorMessage name="userId" component="div" className="invalid-feedback" />
               </div>
               <div className="form-group">
@@ -64,10 +93,6 @@ function BookModal(props) {
           )}
         />
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Cancel</Button>
-        <Button onClick={props.onSave}>Save</Button>
-      </Modal.Footer>
     </Modal>
   )
 }
@@ -75,30 +100,53 @@ function BookModal(props) {
 function RoomBox(props) {
   const isBusy = props.room.isBusy;
   const room = props.room;
+  const [modalShow, setModalShow] = useState(false);
+  const [removeModalShow, setRemoveModalShow] = useState(false);
+
+  let modalClose = () => setModalShow(false);
+  let removeModalClose = () => setRemoveModalShow(false);
+
+  let modalSave = () => setModalShow(false);
+  let removeBookingSave = () => setRemoveModalShow(false);
 
   if (isBusy) {
     return (
-      <Card className="square-busy">
-        <div>{room.id}</div>
-        <div>{room.name}</div>
-        <div>
-          {room.user}
-          <br />
-          <Button size="sm" variant="danger"><FontAwesomeIcon icon="user-times" /></Button>
-        </div>
-      </Card>
+      <>
+        <Card className="square-busy">
+          <div>{room.id}</div>
+          <div>{room.name}</div>
+          <div>
+            {room.user}
+            <br />
+            <Button size="sm"
+              variant="danger"
+              onClick={() => setRemoveModalShow(true)}
+            ><FontAwesomeIcon icon="user-times" /></Button>
+          </div>
+        </Card>
+        <RemoveBookModal show={removeModalShow} room={room}
+          onHide={removeModalClose} onSave={removeBookingSave}></RemoveBookModal>
+      </>
     );
   } else {
     return (
-      <Card className="square-free">
-        <div>{room.id}</div>
-        <div>{room.name}</div>
-        <div>
-          Free
+      <>
+        <Card className="square-free">
+          <div>{room.id}</div>
+          <div>{room.name}</div>
+          <div>
+            Free
           <br />
-          <Button size="sm"><FontAwesomeIcon icon="user-plus" /></Button>
-        </div>
-      </Card>
+            <Button size="sm"
+              variant="primary"
+              onClick={() => setModalShow(true)}
+            ><FontAwesomeIcon icon="user-plus" /></Button>
+          </div>
+        </Card>
+        <BookModal show={modalShow} room={room}
+          onHide={modalClose} onSave={modalSave}></BookModal>
+      </>
+
     );
   }
 }
@@ -144,10 +192,6 @@ export default function Home() {
 
   const [isColorView, setIsColorView] = useState(false);
 
-  const [modalShow, setModalShow] = useState(false);
-
-  let modalClose = () => setModalShow(false);
-  let modalSave = () => setModalShow(false);
 
   return (
     <>
@@ -156,10 +200,6 @@ export default function Home() {
           <div>
             <Button>Calendar View</Button>
             <Button>Color View</Button>
-            <Button
-              variant="primary"
-              onClick={() => setModalShow(true)}
-            >Book</Button>
           </div>
           <div>
             {dateToday}
@@ -187,8 +227,7 @@ export default function Home() {
           ? levelList.map(l => <LevelBox level={l} key={l.id} />)
           : levelList.map(l => <LevelBox level={l} key={l.id} />)}
       </Jumbotron>
-      <BookModal show={modalShow}
-        onHide={modalClose} onSave={modalSave}></BookModal>
+
     </>
 
   );
