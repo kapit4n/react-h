@@ -11,3 +11,17 @@
     width: 20rem;
     display: inline-block;
 }
+
+.client-info {
+    padding: 1rem;
+}
+
+.reservation-info:nth-child(odd) {
+    background: lightblue;
+    padding: 1rem;
+}
+
+.reservation-info:nth-child(even) {
+    background: lightcoral;
+    padding: 1rem;
+}

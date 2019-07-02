@@ -16,18 +16,47 @@ export default function ClientView(props) {
         <Card.Body>
           <Card.Title>{clientInfo.name}</Card.Title>
           <Card.Text>
-            {clientInfo.description}
+            <div className="client-info">
+              Address: Av 18 Corona <br />
+              CellPhone: 74678678 <br />
+              Profession: Software developer <br />
+            </div>
+            <div className="client-reservations">
+              <div className="reservation-info">
+                Room: Room Doble <br />
+                Start Date: Jun 30, 2019 <br />
+                End Date: July 3, 2019 <br />
+                Toral Price: $1000
+              </div>
+
+              <div className="reservation-info">
+                Room: Room Doble <br />
+                Start Date: Jun 30, 2019 <br />
+                End Date: July 3, 2019 <br />
+                Toral Price: $1000
+              </div>
+              <div className="reservation-info">
+                Room: Room Doble <br />
+                Start Date: Jun 30, 2019 <br />
+                End Date: July 3, 2019 <br />
+                Toral Price: $1000
+              </div>
+              <div className="reservation-info">
+                Room: Room Doble <br />
+                Start Date: Jun 30, 2019 <br />
+                End Date: July 3, 2019 <br />
+                Toral Price: $1000
+              </div>
+
+            </div>
           </Card.Text>
         </Card.Body>
-        <ListGroup className="list-group-flush">
-          <ListGroupItem>Feature 1</ListGroupItem>
-        </ListGroup>
-        <Card.Body>
+        <Card.Footer>
           <ButtonToolbar>
             <Link className="btn btn-primary" to={`/clients-edit/${clientInfo.id}`}>Edit</Link> <br />
             <Button to={`/clients-edit/${clientInfo.id}`} onClick={() => console.log("Make the reservation")} variant="outline-primary">Reserve</Button>
           </ButtonToolbar>
-        </Card.Body>
+        </Card.Footer>
       </div>
     </Card>
   )
