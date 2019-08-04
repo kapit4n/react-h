@@ -10,23 +10,23 @@ import styles from './Home.css'
 function RemoveBookModal(props) {
   return (
     <Modal
-    {...props}
-    size="lg"
-    aria-labelledby="contained-modal-title-vcenter"
-    centered
-  >
-    <Modal.Header closeButton>
-      <Modal.Title id="contained-modal-title-vcenter">
-        Remove Booking on {props.room.name}
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Remove Booking on {props.room.name}
         </Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
-      <p> Are you sure to remove the booking for user {props.room.user}</p>
-    </Modal.Body>
-    <Modal.Footer>
-    <Button variant="secondary" onClick={props.onHide}>NO</Button>
-    <Button variant="primary" onClick={props.onSave}>YES</Button>
-  </Modal.Footer>
+      </Modal.Header>
+      <Modal.Body>
+        <p> Are you sure to remove the booking for user {props.room.user}</p>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={props.onHide}>NO</Button>
+        <Button variant="primary" onClick={props.onSave}>YES</Button>
+      </Modal.Footer>
     </Modal>
   );
 }
@@ -43,7 +43,7 @@ function BookModal(props) {
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           Book on {props.room.name}
-          </Modal.Title>
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Formik
@@ -69,6 +69,7 @@ function BookModal(props) {
               <div className="form-group">
                 <label htmlFor="userId">User</label>
                 <Field name="userId" component="select" className={'form-control' + (errors.userId && touched.userId ? ' is-invalid' : '')}>
+                  <option value={0}>Select a User</option>
                   <option value={1}>Luis Arce</option>
                   <option value={2}>Juan Arce</option>
                   <option value={3}>Hansel Arce</option>
@@ -143,8 +144,7 @@ function RoomBox(props) {
             ><FontAwesomeIcon icon="user-plus" /></Button>
           </div>
         </Card>
-        <BookModal show={modalShow} room={room}
-          onHide={modalClose} onSave={modalSave}></BookModal>
+        <BookModal show={modalShow} room={room} onHide={modalClose} onSave={modalSave}></BookModal>
       </>
 
     );
