@@ -19,22 +19,22 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import ReactDOM from "react-dom";
 import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 
-import RoomView from "./comps/rooms/RoomView";
-import RoomList from "./comps/rooms/RoomList";
-import RoomAdd from "./comps/rooms/RoomAdd";
-import RoomEdit from "./comps/rooms/RoomEdit";
+import RoomView from "./views/rooms/RoomView";
+import RoomList from "./views/rooms/RoomList";
+import RoomAdd from "./views/rooms/RoomAdd";
+import RoomEdit from "./views/rooms/RoomEdit";
 
-import ClientView from "./comps/clients/ClientView";
-import ClientList from "./comps/clients/ClientList";
-import ClientAdd from "./comps/clients/ClientAdd";
-import ClientEdit from "./comps/clients/ClientEdit";
+import ClientView from "./views/clients/ClientView";
+import ClientList from "./views/clients/ClientList";
+import ClientAdd from "./views/clients/ClientAdd";
+import ClientEdit from "./views/clients/ClientEdit";
 
-import BookingView from "./comps/bookings/BookingView";
-import BookingList from "./comps/bookings/BookingList";
-import BookingAdd from "./comps/bookings/BookingAdd";
-import BookingEdit from "./comps/bookings/BookingEdit";
+import BookingView from "./views/bookings/BookingView";
+import BookingList from "./views/bookings/BookingList";
+import BookingAdd from "./views/bookings/BookingAdd";
+import BookingEdit from "./views/bookings/BookingEdit";
 
-import Home from "./comps/Home";
+import Home from "./views/Home";
 import * as serviceWorker from "./serviceWorker";
 
 library.add(faUserTimes);
