@@ -105,7 +105,7 @@ const RoomsService = {
   },
 
   getRoomById: function (id) {
-    let selRoom = roomsList.find(x => x.id == id);
+    let selRoom = roomsList.find(x => x.id === id);
     return selRoom;
   }
 };

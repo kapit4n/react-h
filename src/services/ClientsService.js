@@ -19,7 +19,7 @@ const ClientsService = {
 
 
   getClientById: function (id) {
-    let selClient = clientsList.find(x => x.id == id);
+    let selClient = clientsList.find(x => x.id === id);
     return selClient;
   }
 };

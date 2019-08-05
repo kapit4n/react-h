@@ -56,7 +56,7 @@ const BookingsService = {
   },
 
   getBookingById: function (id) {
-    let selBooking = bookingsList.find(x => x.id == id);
+    let selBooking = bookingsList.find(x => x.id === id);
     return selBooking;
   }
 };
