@@ -25,6 +25,40 @@ export function AddAction({ label, onAction }) {
   );
 }
 
+export function SaveAction({ onAction }) {
+  return (
+    <>
+      <Breakpoint name="phone">
+        <Button variant="primary" onClick={onAction}>
+          <FontAwesomeIcon icon="save" />
+        </Button>
+      </Breakpoint>
+      <Breakpoint name="desktop">
+        <Button variant="primary" onClick={onAction}>
+          {'Save'}
+        </Button>
+      </Breakpoint>
+    </>
+  );
+}
+
+export function CancelAction({ onAction }) {
+  return (
+    <>
+      <Breakpoint name="phone">
+        <Button variant="primary" onClick={onAction}>
+          <FontAwesomeIcon icon="times" />
+        </Button>
+      </Breakpoint>
+      <Breakpoint name="desktop">
+        <Button variant="primary" onClick={onAction}>
+          {"Cancel"}
+        </Button>
+      </Breakpoint>
+    </>
+  );
+}
+
 export function MainActionsContainer({ children }) {
   return <div style={styles.mainActionsContainer({})}>{children}</div>;
 }

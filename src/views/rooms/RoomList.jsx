@@ -3,21 +3,28 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import RoomsService from "../../services/RoomsService";
 import { Table, Button, ListGroup } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
 
 import Title from "../../comp/title";
-import { AddAction, ActionsContainer, MainActionsContainer } from "../../comp/actions";
+import {
+  AddAction,
+  ActionsContainer,
+  MainActionsContainer
+} from "../../comp/actions";
 import { Breakpoint } from "../../constants";
 
-export default function RoomList() {
+function RoomList(props) {
   const [roomList, setRoomList] = useState(RoomsService.getRooms());
+
+  const onAddRoom = () => {
+    props.history.push("/rooms-add");
+  };
+
   return (
     <>
       <Title label="Room List" />
       <MainActionsContainer>
-        <AddAction
-          label="Add Room"
-          onAction={() => console.log("Open add room page")}
-        />
+        <AddAction label="Add Room" onAction={onAddRoom} />
       </MainActionsContainer>
       <Breakpoint name="desktop">
         <Table className="table">
@@ -70,3 +77,5 @@ export default function RoomList() {
     </>
   );
 }
+
+export default withRouter(RoomList);

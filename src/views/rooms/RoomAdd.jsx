@@ -1,24 +1,53 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
+import { SaveAction, CancelAction, MainActionsContainer } from "../../comp/actions";
 
-export default function RoomAdd() {
+import { TextInput, FormContainer, TextArea, ImgInput } from "../../comp/inputs";
 
+function RoomAdd(props) {
   const [name, setName] = useState("");
-  const [img, setImg] = useState("https://i.dmarge.com/2014/04/pinterest-ideas-bedrooms-rhpinterestcouk-best-Blue-Bedroom-Bachelor-bedroom-images-on-pinterest-ideas-bedrooms-and-rhpinterestcouk-bachelorus-pad-for-young-energetic-men-1100x880.jpg");
+  const [img, setImg] = useState(
+    "https://carepharmaceuticals.com.au/wp-content/uploads/sites/19/2018/02/placeholder-600x400.png"
+  );
   const [description, setDescription] = useState("");
+
+  const onSave = () => {
+    props.history.push("/rooms");
+  };
+
+  const onCancel = () => {
+    props.history.push("/rooms");
+  };
+
+  const handleName = e => {
+    setName(e.target.value);
+  };
+
+  const handleDescription = e => {
+    setDescription(e.target.value);
+  };
+
+  const handleImg = e => {
+    setImg(URL.createObjectURL(e.target.files[0]));
+  };
 
   return (
     <div>
-      <div>
-        <label>Name</label>
-        <input onChange={(e) => setName(e.target.value)} placeholder="Name" />
-      </div>
-      <div>
-        <label>Img</label>
-        <input onChange={(e) => setImg(e.target.value)} placeholder="http://" />
-        <img src={img} style={{ width: 450 }} />
-      </div>
-      <textarea onChange={(e) => setDescription(e.target.value)} placeholder="Description" cols="46" rows="6" />
+      <FormContainer>
+        <TextInput label="Name" value={name} onChange={handleName} />
+        <ImgInput onChange={handleImg} img={img}></ImgInput>
+        <TextArea
+          label="Description"
+          value={description}
+          onChange={handleDescription}
+        />
+      </FormContainer>
+      <MainActionsContainer>
+        <SaveAction onClick={onSave} />
+        <CancelAction onClick={onCancel} />
+      </MainActionsContainer>
     </div>
-  )
-
+  );
 }
+
+export default withRouter(RoomAdd);
