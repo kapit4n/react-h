@@ -1,8 +1,19 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
-import { SaveAction, CancelAction, MainActionsContainer } from "../../comp/actions";
+import {
+  SaveAction,
+  CancelAction,
+  MainActionsContainer
+} from "../../comp/actions";
 
-import { TextInput, FormContainer, TextArea, ImgInput } from "../../comp/inputs";
+import Title from "../../comp/title";
+
+import {
+  TextInput,
+  FormContainer,
+  TextArea,
+  ImgInput
+} from "../../comp/inputs";
 
 function RoomAdd(props) {
   const [name, setName] = useState("");
@@ -33,9 +44,10 @@ function RoomAdd(props) {
 
   return (
     <div>
+      <Title label="Create Room" />
       <FormContainer>
         <TextInput label="Name" value={name} onChange={handleName} />
-        <ImgInput onChange={handleImg} img={img}></ImgInput>
+        <ImgInput onChange={handleImg} img={img} />
         <TextArea
           label="Description"
           value={description}
@@ -43,8 +55,8 @@ function RoomAdd(props) {
         />
       </FormContainer>
       <MainActionsContainer>
-        <SaveAction onClick={onSave} />
-        <CancelAction onClick={onCancel} />
+        <SaveAction onAction={onSave} />
+        <CancelAction onAction={onCancel} />
       </MainActionsContainer>
     </div>
   );

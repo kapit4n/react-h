@@ -3,7 +3,7 @@ import { Breakpoint } from "../../constants";
 
 export function TextInput({ label, value, onChange }) {
   return (
-    <div style={{ width: "100%", marginTop: '1rem' }}>
+    <div style={{ width: "100%", marginTop: "1rem" }}>
       <Breakpoint name="phone">
         <div>{label}</div>
         <input
@@ -20,22 +20,21 @@ export function TextInput({ label, value, onChange }) {
         </div>
         <input onChange={onChange} placeholder={label} value={value} />
       </Breakpoint>
-    </div >
+    </div>
   );
 }
 
 export function TextArea({ label, value, onChange }) {
   return (
-      <div style={{ width: "100%", marginTop: '1rem' }}>
-          <textarea
-            onChange={onChange}
-            placeholder={label}
-            value={value}
-            style={{ width: "100%"}}
-            rows="6"
-          />
-
-      </div>
+    <div style={{ width: "100%", marginTop: "1rem" }}>
+      <textarea
+        onChange={onChange}
+        placeholder={label}
+        value={value}
+        style={{ width: "100%" }}
+        rows="6"
+      />
+    </div>
   );
 }
 
@@ -45,9 +44,9 @@ export function FormContainer({ children }) {
 
 export function ImgInput({ onChange, img }) {
   return (
-    <div  style={{ width: "100%", marginTop: '1rem' }}>
+    <div style={{ width: "100%", marginTop: "1rem" }}>
       <div>Img</div>
-      <input type="file" onChange={onChange} style={{ width: "100%" }}/>
+      <input type="file" onChange={onChange} style={{ width: "100%" }} />
       <img src={img} style={{ width: "100%" }} />
     </div>
   );

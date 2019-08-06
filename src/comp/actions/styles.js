@@ -5,7 +5,7 @@ export const styles = {
     return {
       backgroundColor: props.background || 'white',
       display: 'flex',
-      justifyContent: 'flex-end',
+      justifyContent: 'space-between',
       margin: '1rem'
     }
   },
@@ -14,7 +14,7 @@ export const styles = {
     return {
       backgroundColor: props.background || 'white',
       display: 'flex',
-      justifyContent: 'flex-end',
+      justifyContent: 'space-between',
     }
   },
 
