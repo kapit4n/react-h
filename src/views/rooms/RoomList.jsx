@@ -1,10 +1,11 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import RoomsService from "../../services/RoomsService";
 import { Table, Button, ListGroup } from "react-bootstrap";
 
 import Title from "../../comp/title";
-import { AddAction, ActionsContainer } from "../../comp/actions";
+import { AddAction, ActionsContainer, MainActionsContainer } from "../../comp/actions";
 import { Breakpoint } from "../../constants";
 
 export default function RoomList() {
@@ -12,12 +13,12 @@ export default function RoomList() {
   return (
     <>
       <Title label="Room List" />
-      <ActionsContainer>
+      <MainActionsContainer>
         <AddAction
           label="Add Room"
           onAction={() => console.log("Open add room page")}
         />
-      </ActionsContainer>
+      </MainActionsContainer>
       <Breakpoint name="desktop">
         <Table className="table">
           <thead>
@@ -54,14 +55,14 @@ export default function RoomList() {
               className="d-flex justify-content-between"
             >
               {r.name}{" "}
-              <div className="d-flex justify-content-between">
+              <ActionsContainer>
                 <Link className="btn btn-primary" to={`/rooms-info/${r.id}`}>
-                  Open
+                  <FontAwesomeIcon icon="book-open" />
                 </Link>
                 <Button onClick={() => console.log("Reservation: " + r.name)}>
-                  Reserve
+                  <FontAwesomeIcon icon="clipboard" />
                 </Button>
-              </div>
+              </ActionsContainer>
             </ListGroup.Item>
           ))}
         </ListGroup>

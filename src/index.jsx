@@ -5,10 +5,12 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserTimes } from "@fortawesome/free-solid-svg-icons";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
+import { faClipboard } from "@fortawesome/free-solid-svg-icons";
 import {
   Nav,
   Navbar,
-  NavDropdown,
   Form,
   FormControl,
   Button
@@ -37,8 +39,13 @@ import BookingEdit from "./views/bookings/BookingEdit";
 import Home from "./views/Home";
 import * as serviceWorker from "./serviceWorker";
 
+
 library.add(faUserTimes);
 library.add(faUserPlus);
+library.add(faPlus);
+library.add(faBookOpen);
+library.add(faClipboard);
+
 class App extends Component {
   constructor() {
     super();
