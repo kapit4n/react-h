@@ -79,7 +79,7 @@ class App extends Component {
 
 const routing = (
   <Router>
-    <div class="container">
+    <div className="container">
       <Route path="/" component={App} />
       <Route path="/home" component={Home} />
       <Route path="/rooms" component={RoomList} />

@@ -4,15 +4,18 @@ import RoomsService from "../../services/RoomsService";
 import { Table, Button, ListGroup } from "react-bootstrap";
 
 import Title from '../../comp/title';
-import {AddAction} from '../../comp/actions';
+import {AddAction, ActionsContainer} from '../../comp/actions';
 
 export default function RoomList() {
   const [roomList, setRoomList] = useState(RoomsService.getRooms());
   return (
     <>
       <Title label="Room List"></Title>
-      <AddAction label="Add Room" onAction={() => console.log("Open add room page")}></AddAction>
-      <div className=" d-none d-sm-block">
+      <ActionsContainer>
+        <AddAction label="Add Room" onAction={() => console.log("Open add room page")}></AddAction>
+
+      </ActionsContainer>
+      <div className="d-sm-none d-md-block">
         <Table className="table">
           <thead>
             <tr>

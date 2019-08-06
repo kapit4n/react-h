@@ -1,0 +1,11 @@
+.inline-button {
+    position: absolute;
+    right: 32px;
+    top: 64px;
+  }
+
+  .actions-container {
+      background: red;
+      display: flex;
+      justify-content: center;
+  }
