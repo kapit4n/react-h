@@ -42,6 +42,23 @@ export function SaveAction({ onAction }) {
   );
 }
 
+export function EditAction({ onAction }) {
+  return (
+    <>
+      <Breakpoint name="phone">
+        <Button variant="primary" onClick={onAction}>
+          <FontAwesomeIcon icon="pencil" />
+        </Button>
+      </Breakpoint>
+      <Breakpoint name="desktop">
+        <Button variant="primary" onClick={onAction}>
+          {'Edit'}
+        </Button>
+      </Breakpoint>
+    </>
+  );
+}
+
 export function CancelAction({ onAction }) {
   return (
     <>

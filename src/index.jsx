@@ -23,10 +23,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import ReactDOM from "react-dom";
 import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 
-import RoomView from "./views/rooms/RoomView";
 import RoomList from "./views/rooms/RoomList";
-import RoomAdd from "./views/rooms/RoomAdd";
-import RoomEdit from "./views/rooms/RoomEdit";
+import RoomManager from "./views/rooms/RoomManager";
 
 import ClientView from "./views/clients/ClientView";
 import ClientList from "./views/clients/ClientList";
@@ -94,9 +92,9 @@ const routing = (
       <Route path="/" component={App} />
       <Route path="/home" component={Home} />
       <Route path="/rooms" component={RoomList} />
-      <Route path="/rooms-add" component={RoomAdd} />
-      <Route path="/rooms-edit/:id" component={RoomEdit} />
-      <Route path="/rooms-info/:id" component={RoomView} />
+      <Route path="/rooms-add" component={RoomManager} />
+      <Route path="/rooms-edit/:id" component={RoomManager} />
+      <Route path="/rooms-info/:id" component={RoomManager} />
 
       <Route path="/clients" component={ClientList} />
       <Route path="/clients-add" component={ClientAdd} />
