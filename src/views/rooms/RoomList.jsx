@@ -15,7 +15,7 @@ export default function RoomList() {
         <AddAction label="Add Room" onAction={() => console.log("Open add room page")}></AddAction>
 
       </ActionsContainer>
-      <div className="d-sm-none d-md-block">
+      <div className="d-block d-sm-none">
         <Table className="table">
           <thead>
             <tr>
@@ -42,7 +42,9 @@ export default function RoomList() {
           </tbody>
         </Table>
       </div>
-      <ListGroup className="d-block d-md-none" style={{ width: "100%" }}>
+      <div className="d-block d-sm-none" >
+
+      <ListGroup style={{ width: "100%" }}>
         {roomList.map(r => (
           <ListGroup.Item key={r.id} className="d-flex justify-content-between">
             {r.name}{" "}
@@ -57,6 +59,8 @@ export default function RoomList() {
           </ListGroup.Item>
         ))}
       </ListGroup>
+      </div>
+     
     </>
   );
 }
