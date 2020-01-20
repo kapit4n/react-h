@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Button, Jumbotron, Modal } from "react-bootstrap";
+import { Card, Button, Jumbotron, Modal, Tabs, Tab } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -153,13 +153,14 @@ function RoomBox(props) {
 
 function LevelBox(props) {
   const level = props.level;
+  const filter = props.filter;
 
   return (
-    <div>
+    <div style={{ display: '100%' }}>
       <div>{level.name}</div>
       <div>
-        {level.rooms.map(r => (
-          <RoomBox room={r} key={r.id} />
+        {level.rooms.filter(x => filter === 'all' || (filter === 'reserved' && x.bookings.length > 0) || (filter === 'free' && x.bookings.length === 0)).map(r => (
+          <RoomBox room={Object.assign({}, r, { isBusy: r.bookings.length > 0 })} key={r.id} filter={filter} />
         ))}
       </div>
     </div>
@@ -185,6 +186,20 @@ function CalendarBox(props) {
   );
 }
 
+function Reserved({ levelList }) {
+  return levelList.filter(x => x.name).map(l => <LevelBox level={l} key={l.id} filter="reserved" />)
+}
+
+function Free({ levelList }) {
+  console.log(levelList);
+  return levelList.filter(x => x.name).map(l => <LevelBox level={l} key={l.id} filter="free" />)
+}
+
+function All({ levelList }) {
+  console.log(levelList);
+  return levelList.filter(x => x.name).map(l => <LevelBox level={l} key={l.id} filter="all" />)
+}
+
 export default function Home() {
   const dateToday = new Date().toDateString();
 
@@ -192,40 +207,27 @@ export default function Home() {
 
   const [isColorView, setIsColorView] = useState(false);
 
-
   return (
     <>
       <Jumbotron>
         <div>
           <div>
-            <Button>Calendar View</Button>
-            <Button>Color View</Button>
+            <Tabs defautActiveKey="all">
+              <Tab eventKey="all" title="All">
+                <All levelList={levelList} />
+              </Tab>
+              <Tab eventKey="reserved" title="Reserved">
+                <Reserved levelList={levelList} />
+              </Tab>
+              <Tab eventKey="free" title="Free">
+                <Free levelList={levelList} />
+              </Tab>
+            </Tabs>
           </div>
           <div>
             {dateToday}
-            <div
-              style={{
-                backgroundColor: "#ccffc4",
-                width: "50px",
-                display: "inline-block"
-              }}
-            >
-              free
-          </div>
-            <div
-              style={{
-                backgroundColor: "#f48c89",
-                width: "50px",
-                display: "inline-block"
-              }}
-            >
-              busy
-          </div>
           </div>
         </div>
-        {isColorView
-          ? levelList.map(l => <LevelBox level={l} key={l.id} />)
-          : levelList.map(l => <LevelBox level={l} key={l.id} />)}
       </Jumbotron>
 
     </>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import BookingsService from '../../services/BookingsService';
-import { Table, Button, ListGroup } from 'react-bootstrap';
+import { Table, ListGroup } from 'react-bootstrap';
 
 export default function BookingList() {
 
