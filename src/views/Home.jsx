@@ -167,7 +167,7 @@ function LevelBox(props) {
     <div style={{ display: '100%' }}>
       <div>{level.name}</div>
       <div className="row">
-        {level.rooms.filter(x => filter === 'all' || (filter === 'reserved' && x.bookings.length > 0) || (filter === 'free' && x.bookings.length === 0)).map(r => (
+        {level.rooms.filter(x => x.name.toLowerCase().includes(props.searchText.toLowerCase()) && (filter === 'all' || (filter === 'reserved' && x.bookings.length > 0) || (filter === 'free' && x.bookings.length === 0))).map(r => (
           <RoomBox room={Object.assign({}, r, { isBusy: r.bookings.length > 0 })} key={r.id} filter={filter} />
         ))}
       </div>
@@ -194,18 +194,16 @@ function CalendarBox(props) {
   );
 }
 
-function Reserved({ levelList }) {
-  return levelList.filter(x => x.name).map(l => <LevelBox level={l} key={l.id} filter="reserved" />)
+function Reserved({ levelList, searchText }) {
+  return levelList.filter(x => x.name).map(l => <LevelBox level={l} key={l.id} filter="reserved" searchText={searchText} />)
 }
 
-function Free({ levelList }) {
-  console.log(levelList);
-  return levelList.filter(x => x.name).map(l => <LevelBox level={l} key={l.id} filter="free" />)
+function Free({ levelList, searchText }) {
+  return levelList.filter(x => x.name).map(l => <LevelBox level={l} key={l.id} filter="free" searchText={searchText} />)
 }
 
-function All({ levelList }) {
-  console.log(levelList);
-  return levelList.filter(x => x.name).map(l => <LevelBox level={l} key={l.id} filter="all" />)
+function All({ levelList, searchText }) {
+  return levelList.filter(x => x.name).map(l => <LevelBox level={l} key={l.id} filter="all" searchText={searchText} />)
 }
 
 export default function Home() {
@@ -224,13 +222,13 @@ export default function Home() {
           </div>
           <Tabs defautActiveKey="all">
             <Tab eventKey="all" title="All">
-              <All levelList={levelList} />
+              <All levelList={levelList} searchText={searchText} />
             </Tab>
             <Tab eventKey="reserved" title="Reserved">
-              <Reserved levelList={levelList} />
+              <Reserved levelList={levelList} searchText={searchText} />
             </Tab>
             <Tab eventKey="free" title="Free">
-              <Free levelList={levelList} />
+              <Free levelList={levelList} searchText={searchText} />
             </Tab>
           </Tabs>
         </div>
