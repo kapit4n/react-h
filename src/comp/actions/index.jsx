@@ -47,7 +47,7 @@ export function EditAction({ onAction }) {
     <>
       <Breakpoint name="phone">
         <Button variant="primary" onClick={onAction}>
-          <FontAwesomeIcon icon="pencil" />
+          <FontAwesomeIcon icon="edit"/>
         </Button>
       </Breakpoint>
       <Breakpoint name="desktop">

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import BookingsService from '../../services/BookingsService';
 import { Card, ListGroup, ListGroupItem, Button, ButtonToolbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import styles from './Bookings.css';
 
 export default function BookingView(props) {
   const [bookingInfo, setBookingInfo] = useState(BookingsService.getBookingById(props.match.params.id))

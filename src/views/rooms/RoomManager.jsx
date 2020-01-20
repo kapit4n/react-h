@@ -16,15 +16,23 @@ import {
   ImgInput
 } from "../../comp/inputs";
 
-function RoomManager({ edition, info, history }) {
-  const [isEdit, setIsEdit] = useState(edition);
-  const [name, setName] = useState(info.name);
+function RoomManager({ edition, roomId, history }) {
+  const [isEdit, setIsEdit] = useState(false);
+  const [name, setName] = useState('');
 
   const [img, setImg] = useState(
-    info.img ||
-      "https://carepharmaceuticals.com.au/wp-content/uploads/sites/19/2018/02/placeholder-600x400.png"
+    "https://carepharmaceuticals.com.au/wp-content/uploads/sites/19/2018/02/placeholder-600x400.png"
   );
-  const [description, setDescription] = useState(info.description);
+
+  const [description, setDescription] = useState('');
+
+  React.useEffect(() => {
+    // load from api
+    setName("Room 1");
+    setImg("https://media-cdn.tripadvisor.com/media/photo-s/05/6f/52/8c/doubletree-by-hilton.jpg");
+    setDescription("Description of the ");
+  }, [roomId])
+
 
   const onSave = () => {
     history.push("/rooms");
@@ -51,16 +59,16 @@ function RoomManager({ edition, info, history }) {
   };
 
   return (
-    <div>
-      <Title label="Create Room" />
+    <div style={{ width: '100%' }}>
+      <Title label="Room" />
       <FormContainer>
         <TextInput
           isReadOnly={!isEdit}
           label="Name"
           value={name}
           onChange={handleName}
-        />
-        <ImgInput onChange={handleImg} img={img} />
+          />
+        <ImgInput isReadOnly={!isEdit} onChange={handleImg} img={img} />
         <TextArea
           label="Description"
           value={description}
@@ -73,10 +81,10 @@ function RoomManager({ edition, info, history }) {
           <CancelAction onAction={onCancel} />
         </MainActionsContainer>
       ) : (
-        <MainActionsContainer>
-          <EditAction onAction={onEdit} />
-        </MainActionsContainer>
-      )}
+          <MainActionsContainer>
+            <EditAction onAction={onEdit} />
+          </MainActionsContainer>
+        )}
     </div>
   );
 }

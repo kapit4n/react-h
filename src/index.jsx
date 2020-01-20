@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import "./style.css";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
 import { faClipboard } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { faUserTimes } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -21,7 +21,7 @@ import { LinkContainer } from "react-router-bootstrap";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import ReactDOM from "react-dom";
-import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 
 import RoomList from "./views/rooms/RoomList";
 import RoomManager from "./views/rooms/RoomManager";
@@ -46,6 +46,7 @@ library.add(faPlus);
 library.add(faBookOpen);
 library.add(faClipboard);
 library.add(faSave);
+library.add(faEdit);
 library.add(faTimes);
 
 class App extends Component {
