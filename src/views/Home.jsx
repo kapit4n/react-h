@@ -113,7 +113,7 @@ function RoomBox(props) {
 
   if (isBusy) {
     return (
-      <div className="col-md-4 col-sm-12">
+      <div className="col-md-6 col-lg-4 col-sm-12">
         <Card className="square-busy">
           <div>{room.id}</div>
           <div>{room.name}</div>
@@ -140,7 +140,7 @@ function RoomBox(props) {
     );
   } else {
     return (
-      <div className="col-md-4 col-sm-12">
+      <div className="col-md-6 col-lg-4 col-sm-12">
         <Card className="square-free" >
           <div>{room.id}</div>
           <div>{room.name}</div>

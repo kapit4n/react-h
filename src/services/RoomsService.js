@@ -57,13 +57,13 @@ const roomsUsersList = [
         bookings: [
           {
             id: 1,
-            user: "Juan Perez",
+            user: "Juan P",
             startDate: new Date('2019-12-17T03:24:00'),
             endDate: new Date('2020-12-17T03:24:00')
           },
           {
             id: 2,
-            user: "Vanessa Hadgens",
+            user: "Vanessa H",
             startDate: new Date('1995-12-17T03:24:00'),
             endDate: new Date('1995-12-17T03:24:00')
           }
