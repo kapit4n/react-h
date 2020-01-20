@@ -112,7 +112,7 @@ function RoomBox(props) {
 
   if (isBusy) {
     return (
-      <>
+      <div className="col-md-4 col-sm-12">
         <Card className="square-busy">
           <div>{room.id}</div>
           <div>{room.name}</div>
@@ -127,12 +127,12 @@ function RoomBox(props) {
         </Card>
         <RemoveBookModal show={removeModalShow} room={room}
           onHide={removeModalClose} onSave={removeBookingSave}></RemoveBookModal>
-      </>
+      </div>
     );
   } else {
     return (
-      <>
-        <Card className="square-free">
+      <div className="col-md-4 col-sm-12">
+        <Card className="square-free" >
           <div>{room.id}</div>
           <div>{room.name}</div>
           <div>
@@ -143,10 +143,9 @@ function RoomBox(props) {
               onClick={() => setModalShow(true)}
             ><FontAwesomeIcon icon="user-plus" /></Button>
           </div>
-        </Card>
+        </Card >
         <BookModal show={modalShow} room={room} onHide={modalClose} onSave={modalSave}></BookModal>
-      </>
-
+      </div >
     );
   }
 }
@@ -158,7 +157,7 @@ function LevelBox(props) {
   return (
     <div style={{ display: '100%' }}>
       <div>{level.name}</div>
-      <div>
+      <div className="row">
         {level.rooms.filter(x => filter === 'all' || (filter === 'reserved' && x.bookings.length > 0) || (filter === 'free' && x.bookings.length === 0)).map(r => (
           <RoomBox room={Object.assign({}, r, { isBusy: r.bookings.length > 0 })} key={r.id} filter={filter} />
         ))}
