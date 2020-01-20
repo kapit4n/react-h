@@ -58,12 +58,12 @@ const roomsUsersList = [
           {
             id: 1,
             user: "Juan Perez",
-            startDate: new Date('1995-12-17T03:24:00'),
-            endDate: new Date('1995-12-17T03:24:00')
+            startDate: new Date('2019-12-17T03:24:00'),
+            endDate: new Date('2020-12-17T03:24:00')
           },
           {
             id: 2,
-            user: "Juan Perez",
+            user: "Vanessa Hadgens",
             startDate: new Date('1995-12-17T03:24:00'),
             endDate: new Date('1995-12-17T03:24:00')
           }
@@ -82,7 +82,7 @@ const roomsUsersList = [
     name: "Level 2",
     rooms: [
       {
-        id: 7, 
+        id: 7,
         name: 'Single Room',
         img: "https://www.thonhotels.com/siteassets/hoteller/norge/oslo/thon-hotel-terminus/romtyper/small-single-room/thon-hotel-terminus-small-single-room-1.jpg?width=1100&height=550&mode=crop&quality=80",
         description: `The room comes with Dreamax bed (manufactured and 

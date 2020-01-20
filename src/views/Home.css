@@ -1,15 +1,17 @@
 .square-free {
-  height: 150px;
+  height: 180px;
   width: '100%';
   background-color: #ccffc4;
   margin: 5px;
   font-size: 12px;
+  padding: '1rem';
 }
 
 .square-busy {
-  height: 150px;
+  height: 180px;
   width: '100%';
   background-color: #f48c89;
   margin: 5px;
   font-size: 12px;
+  padding: '1rem';
 }

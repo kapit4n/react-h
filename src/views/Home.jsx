@@ -99,6 +99,7 @@ function BookModal(props) {
 }
 
 function RoomBox(props) {
+  console.log(props.room);
   const isBusy = props.room.isBusy;
   const room = props.room;
   const [modalShow, setModalShow] = useState(false);
@@ -123,6 +124,14 @@ function RoomBox(props) {
               variant="danger"
               onClick={() => setRemoveModalShow(true)}
             ><FontAwesomeIcon icon="user-times" /></Button>
+          </div>
+          <div>
+            {room.bookings.map(x => <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.2rem' }}>
+              <div style={{ paddingTop: '0.8rem', marginRight: '1rem' }}>
+                [{x.startDate.toLocaleDateString("en-US")} to {x.endDate.toLocaleDateString("en-US")}]: {x.user}
+              </div>
+              <Button size="sm">x</Button>
+            </div>)}
           </div>
         </Card>
         <RemoveBookModal show={removeModalShow} room={room}
@@ -204,31 +213,31 @@ export default function Home() {
 
   const [levelList, setlevelList] = useState(RoomsService.getRoomsUsers());
 
-  const [isColorView, setIsColorView] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   return (
     <>
-      <Jumbotron>
+      <div>
         <div>
-          <div>
-            <Tabs defautActiveKey="all">
-              <Tab eventKey="all" title="All">
-                <All levelList={levelList} />
-              </Tab>
-              <Tab eventKey="reserved" title="Reserved">
-                <Reserved levelList={levelList} />
-              </Tab>
-              <Tab eventKey="free" title="Free">
-                <Free levelList={levelList} />
-              </Tab>
-            </Tabs>
+          <div style={{ display: 'flex', width: '100%', justifyContent: 'center', margin: '0.5rem' }}>
+            <input type="text" value={searchText} onChange={x => setSearchText(x.target.value)} /><button>Search</button>
           </div>
-          <div>
-            {dateToday}
-          </div>
+          <Tabs defautActiveKey="all">
+            <Tab eventKey="all" title="All">
+              <All levelList={levelList} />
+            </Tab>
+            <Tab eventKey="reserved" title="Reserved">
+              <Reserved levelList={levelList} />
+            </Tab>
+            <Tab eventKey="free" title="Free">
+              <Free levelList={levelList} />
+            </Tab>
+          </Tabs>
         </div>
-      </Jumbotron>
-
+        <div>
+          {dateToday}
+        </div>
+      </div>
     </>
 
   );
