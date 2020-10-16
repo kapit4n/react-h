@@ -1,9 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import RoomsService from "../../services/RoomsService";
 import { Table, Button, ListGroup } from "react-bootstrap";
-import { withRouter } from "react-router-dom";
 
 import Title from "../../comp/title";
 import {
@@ -14,12 +12,9 @@ import {
 import { Breakpoint } from "../../constants";
 
 function RoomList(props) {
-  const [roomList, setRoomList] = useState(RoomsService.getRooms());
-
   const onAddRoom = () => {
     props.history.push("/rooms-add");
   };
-
   return (
     <>
       <Title label="Room List" />
@@ -36,7 +31,7 @@ function RoomList(props) {
             </tr>
           </thead>
           <tbody>
-            {roomList.map(r => (
+            {props.rooms && props.rooms.map(r => (
               <tr key={r.id}>
                 <td>{r.id}</td>
                 <td>{r.name}</td>
@@ -56,7 +51,7 @@ function RoomList(props) {
 
       <Breakpoint name="phone">
         <ListGroup style={{ width: "100%" }}>
-          {roomList.map(r => (
+          {props.rooms && props.rooms.map(r => (
             <ListGroup.Item
               key={r.id}
               className="d-flex justify-content-between"
@@ -78,4 +73,4 @@ function RoomList(props) {
   );
 }
 
-export default withRouter(RoomList);
+export default RoomList;
