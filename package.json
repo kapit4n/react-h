@@ -38,7 +38,7 @@
   "devDependencies": {
     "babel-core": "^6.26.3",
     "eslint-plugin-react": "^7.14.3",
-    "react-scripts": "^3.0.1"
+    "react-scripts": "^5.0.1"
   },
   "browserslist": {
     "production": [
